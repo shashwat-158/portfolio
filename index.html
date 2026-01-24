@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic SQL Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Alex Developer</h1>
+            <p>Database Systems Student | Frontend Designer</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="projects-section">
+            <h2>🗄️ Project Archive (SQL Select)</h2>
+            <div id="project-list" class="grid">
+                <p>Loading projects from database...</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="guestbook-section">
+            <h2>✍️ Sign the Guestbook</h2>
+            <p>Data entered here is saved to the PostgreSQL database.</p>
+            
+            <form id="guestForm">
+                <input type="text" id="visitorName" placeholder="Your Name" required>
+                <textarea id="visitorMsg" placeholder="Write a message..." required></textarea>
+                <button type="submit">Send to Database</button>
+            </form>
+
+            <h3>Recent Messages:</h3>
+            <ul id="messageList">
+                </ul>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
