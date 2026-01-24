@@ -3,7 +3,7 @@ A serverless portfolio website built with **HTML, CSS, JavaScript** and integrat
 
 This project demonstrates a **full-stack approach** to a portfolio site. Instead of hard-coding content, project data is fetched dynamically from a cloud database, and visitors can interact with a live database-backed guestbook.
 
-🔗 **Live Demo:** 
+🔗 **Live Demo:** https://shashwat-158.github.io/portfolio/
 
 ---
 
@@ -53,7 +53,7 @@ CREATE TABLE guestbook (
 
 ### 1. Clone the repo:
 ```bash
-git clone [https://github.com/](https://github.com/)[shashwat-158]/portfolio.git
+git clone https://github.com/shashwat-158/portfolio.git
 ```
 ### 2. Open `index.html`: 
 Simply double-click `index.html` to open it in your browser. No local server (like XAMPP or Node) is required because the database is in the cloud.
