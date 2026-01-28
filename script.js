@@ -9,7 +9,6 @@ const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // --- 2. FETCH PROJECTS (SELECT Query) ---
 async function fetchProjects() {
-    // SQL Equivalent: SELECT * FROM projects ORDER BY id DESC;
     const { data, error } = await db
         .from('projects')
         .select('*')
@@ -19,15 +18,21 @@ async function fetchProjects() {
         console.error("Error loading projects:", error);
     } else {
         const list = document.getElementById('project-list');
-        list.innerHTML = ""; // Clear loading text
+        list.innerHTML = ""; 
         
         data.forEach(project => {
             const card = document.createElement('div');
             card.className = 'card';
+            
+            // We create TWO layers: Content (Visible) and Overlay (Hidden until hover)
             card.innerHTML = `
-                <h3>${project.title}</h3>
-                <p>${project.description}</p>
-                <span class="tech-tag">${project.tech_stack}</span>
+                <div class="card-content">
+                    <h3>${project.title}</h3>
+                    <span class="tech-tag">${project.tech_stack}</span>
+                </div>
+                <div class="card-overlay">
+                    <p>${project.description}</p>
+                </div>
             `;
             list.appendChild(card);
         });
