@@ -1,20 +1,24 @@
-# 🚀 Dynamic Database Portfolio
+# 🚀 Performance-Focused Dynamic Portfolio
+
 A serverless portfolio website built with **HTML, CSS, JavaScript** and integrated with **Supabase (PostgreSQL)**.
 
-This project demonstrates a **full-stack approach** to a portfolio site. Instead of hard-coding content, project data is fetched dynamically from a cloud database, and visitors can interact with a live database-backed guestbook.
+This project demonstrates a **full-stack approach** to a portfolio site. Instead of hard-coding content, project data is fetched dynamically from a cloud database, and visitors can interact with a live database-backed guestbook. It is designed with a focus on **latency-critical engineering** principles, matching the professional profile displayed.
 
-🔗 **Live Demo:** https://shashwat-158.github.io/portfolio/
+🔗 **Live Demo:** [https://shashwat-158.github.io/portfolio/](https://shashwat-158.github.io/portfolio/)
 
 ---
 
 ## 🛠️ Features
-* **Dynamic Content Loading:** Project details (Title, Description, Tech Stack) are not in HTML. They are queried from a **PostgreSQL** database using JavaScript.
+* **Dynamic Content Loading:** Project details (Title, Description, Tech Stack) are queried from a **PostgreSQL** database via JavaScript, ensuring real-time updates without redeploying HTML.
+* **Interactive UI:**
+    * **Glassmorphism Overlay:** Project cards feature a slide-up "glass" overlay on hover to reveal detailed descriptions.
+    * **Social Integration:** Direct links to LinkedIn, GitHub, Email, and downloadable PDF CV.
 * **Database Interaction (CRUD):**
     * **READ:** Fetches and displays portfolio projects (`SELECT * FROM projects`).
     * **WRITE:** Allows users to sign a guestbook (`INSERT INTO guestbook`).
     * **READ:** Immediately fetches and updates the guestbook list after submission.
 * **Serverless Architecture:** Uses **Supabase** for the backend, eliminating the need for a traditional Node/PHP server.
-* **Responsive Design:** Fully responsive CSS Grid layout for mobile and desktop.
+* **Responsive Design:** Fully responsive CSS Grid layout optimized for mobile and desktop.
 
 ---
 
@@ -32,6 +36,7 @@ CREATE TABLE projects (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 ```
+
 ### 2. `guestbook` Table
 Stores user-submitted messages from the frontend form.
 ```sql
@@ -53,17 +58,18 @@ CREATE TABLE guestbook (
 
 ### 1. Clone the repo:
 ```bash
-git clone https://github.com/shashwat-158/portfolio.git
+git clone [https://github.com/shashwat-158/portfolio.git](https://github.com/shashwat-158/portfolio.git)
 ```
 ### 2. Open `index.html`: 
 Simply double-click `index.html` to open it in your browser. No local server (like XAMPP or Node) is required because the database is in the cloud.
 
 ## ⚙️ Configuration
-The connection to the database is handled in `script.js` using Supabase API keys:
-```js
-const SUPABASE_URL = "[https://tyouigbbbaancfnvzdqy.supabase.co](https://tyouigbbbaancfnvzdqy.supabase.co)";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR5b3VpZ2JiYmFhbmNmbnZ6ZHF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkyMzAzNTUsImV4cCI6MjA4NDgwNjM1NX0.AKkSgDWTNWa8sGMGWGCQ7BzEKcY_RxeSnGiBImkVbwo";
+The connection to the database is handled in `script.js` using Supabase API keys.
+
+To run this locally, create a `script.js` file and add your own credentials:
+
+```javascript
+const SUPABASE_URL = "[https://your-project-ref.supabase.co](https://your-project-ref.supabase.co)";
+const SUPABASE_KEY = "your-public-anon-key";
 ```
 (Note: The API key used is the public anon key, which is safe for frontend use when combined with Row Level Security policies.)
-
-## 📸 Screenshots
