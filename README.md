@@ -2,7 +2,7 @@
 
 A serverless portfolio website built with **HTML, CSS, JavaScript** and integrated with **Supabase (PostgreSQL)**.
 
-This project demonstrates a **full-stack approach** to a portfolio site. Instead of hard-coding content, project data is fetched dynamically from a cloud database, and visitors can interact with a live database-backed guestbook. It is designed with a focus on **latency-critical engineering** principles, matching the professional profile displayed.
+This project demonstrates a **full-stack approach** to a portfolio site. Instead of hard-coding content, project data is fetched dynamically from a cloud database, and visitors can interact with a live database-backed guestbook.
 
 🔗 **Live Demo:** [https://shashwat-158.github.io/portfolio/](https://shashwat-158.github.io/portfolio/)
 
