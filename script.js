@@ -7,7 +7,8 @@ const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// --- 2. FETCH PROJECTS (SELECT Query) ---
+
+// --- 2. FETCH PROJECTS (Updated for Clickable Links) ---
 async function fetchProjects() {
     const { data, error } = await db
         .from('projects')
@@ -21,10 +22,13 @@ async function fetchProjects() {
         list.innerHTML = ""; 
         
         data.forEach(project => {
-            const card = document.createElement('div');
+            // We create an Anchor <a> tag instead of a div so the whole card is clickable
+            const card = document.createElement('a');
             card.className = 'card';
+            // Use the database URL, or fallback to GitHub profile if missing
+            card.href = project.github_url || "https://github.com/shashwat-158";
+            card.target = "_blank"; // Open in new tab
             
-            // We create TWO layers: Content (Visible) and Overlay (Hidden until hover)
             card.innerHTML = `
                 <div class="card-content">
                     <h3>${project.title}</h3>
@@ -32,6 +36,7 @@ async function fetchProjects() {
                 </div>
                 <div class="card-overlay">
                     <p>${project.description}</p>
+                    <small style="margin-top:10px; font-weight:bold;">Click to view code ↗</small>
                 </div>
             `;
             list.appendChild(card);
@@ -39,50 +44,24 @@ async function fetchProjects() {
     }
 }
 
-// --- 3. SUBMIT FORM (INSERT Query) ---
+// --- 3. SUBMIT FORM (Updated: Insert Only, No Refresh) ---
 document.getElementById('guestForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const name = document.getElementById('visitorName').value;
     const msg = document.getElementById('visitorMsg').value;
 
-    // SQL Equivalent: INSERT INTO guestbook (visitor_name, message) VALUES (...)
     const { error } = await db
-        .from('guestbook')
+        .from('guestbook') // You can keep the table name 'guestbook' even if UI says 'Contact'
         .insert([{ visitor_name: name, message: msg }]);
 
     if (error) {
-        alert("Error saving: " + error.message);
+        alert("Error sending message: " + error.message);
     } else {
-        alert("Signed! Refreshing list...");
-        fetchMessages(); // Refresh the list
+        alert("Message sent securely to the database! I will get back to you soon.");
         document.getElementById('guestForm').reset();
     }
 });
 
-// --- 4. FETCH MESSAGES (SELECT Query) ---
-async function fetchMessages() {
-    const { data, error } = await db
-        .from('guestbook')
-        .select('*')
-        .order('visit_time', { ascending: false })
-        .limit(5);
-
-    if (error) return console.error(error);
-
-    const ul = document.getElementById('messageList');
-    ul.innerHTML = "";
-    
-    data.forEach(msg => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <strong>${msg.visitor_name}</strong>: ${msg.message}
-            <small>${new Date(msg.visit_time).toLocaleString()}</small>
-        `;
-        ul.appendChild(li);
-    });
-}
-
-// Load data when page opens
+// Load ONLY projects when page opens (No fetchMessages)
 fetchProjects();
-fetchMessages();

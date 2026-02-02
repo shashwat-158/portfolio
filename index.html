@@ -53,19 +53,26 @@
 
         <hr>
 
-        <section id="guestbook-section">
-            <h2>✍️ Sign the Guestbook</h2>
-            <p>Data entered here is saved to the PostgreSQL database.</p>
+        <section id="projects-section">
+            <h2>🚀 Technical Projects</h2>
+            <div id="project-list" class="grid">
+                <p>Loading projects from database...</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="contact-section">
+            <h2>📬 Direct Message</h2>
+            <p>Send me a direct message. It will be sent privately to my database.</p>
             
             <form id="guestForm">
-                <input type="text" id="visitorName" placeholder="Your Name" required>
+                <input type="text" id="visitorName" placeholder="Your Name / Email" required>
                 <textarea id="visitorMsg" placeholder="Write a message..." required></textarea>
-                <button type="submit">Send to Database</button>
+                <button type="submit">Send Message</button>
             </form>
-
-            <h3>Recent Messages:</h3>
-            <ul id="messageList"></ul>
-        </section>
+            
+            </section>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

@@ -36,6 +36,12 @@ h1 { color: var(--primary); margin: 0; font-size: 2.5rem; }
     height: 200px;      /* Fixed height for uniformity */
     border: 1px solid #334155;
     transition: transform 0.3s ease;
+
+    /* NEW: Make it behave like a link */
+    display: block; 
+    text-decoration: none; 
+    color: inherit; 
+    cursor: pointer;
 }
 
 .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
